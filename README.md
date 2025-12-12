@@ -31,6 +31,9 @@ appropriate `run.txt` – it has a syntax similar to start.
 - Optionally disables logging when started with `--no-log`.
 - Truncates `run.txt` after reading or if larger than 1 MiB.
 
+Commands in the user queue are never run elevated, commands in the system queue
+are always run elevated.
+
 ### `gstart.exe`
 
 - Builds a single launch record from the caller’s arguments:
