@@ -161,7 +161,7 @@ Using the helper utility `gstart.exe` to write to the `run.txt` file(s).
 
 ```powershell
 # Run through system queue (requires elevation)
-gstart -s -D "C:\" notepad.exe "file.txt"
+gstart -s -d "C:\" notepad.exe "file.txt"
 # Run through user queue
 gstart notepad.exe
 ```
