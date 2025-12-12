@@ -97,7 +97,16 @@ pub fn main() !void {
     }
     const target_program = target_opt.?;
     const target_args = res.positionals[1];
-    const work_dir = res.args.dir orelse "";
+    var work_dir: []u8 = undefined;
+
+    // If work_dir supplied, use it; otherwise use current directory.
+    if (res.args.dir) |d| {
+        // clone user-supplied directory
+        work_dir = try allocator.dupe(u8, d);
+    } else {
+        work_dir = try std.process.getCwdAlloc(allocator);
+    }
+    defer allocator.free(work_dir);
 
     // Build the file path based on mode.
     const file_path = blk: {
